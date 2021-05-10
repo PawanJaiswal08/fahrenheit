@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+
+    <!-- Navbar CSS -->
+    <link rel="stylesheet" href="{% static 'css/navbar-dark.css' %}"/>
+
+    <!-- Footer CSS -->
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}"/>
+
+    <!-- readmore CSS -->
+    <link rel="stylesheet" href="{% static 'css/readmore_button.css' %}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+    <!-- Other -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!-- Logo Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Navbar Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet">
+
+    <!-- Blog Content Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Buda:wght@300&family=Bungee+Hairline&family=MuseoModerno:wght@300&family=Oldenburg&display=swap" rel="stylesheet">
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Mogra&family=Share+Tech+Mono&family=Bungee+Shade&family=Buda:wght@300&family=Bungee+Hairline&family=MuseoModerno:wght@300&family=Oldenburg&family=Fredericka+the+Great&family=Philosopher&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+    <!-- TITLE -->
+    <title>Fitness</title>
+    <link rel="icon" href="../../static/images/icon.png">
+</head>
+<body>
+<!-- Header -->
+<div class="header" style="background-image: url(../../static/images/fitness.png);">
+<!-- Navbar -->
+    <nav class="navbar">
+        <a href="{% url 'home' %}" style="text-decoration: none" class="custom-card">
+            <div class="brand-title" data-aos="fade-right" data-aos-duration="1200">
+                <img src="../../static/images/white_logo.png" alt="logo" width="150" height="40" />
+            </div>
+        </a>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        {% if user.is_authenticated %}
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+                </li>
+                <li>
+                    <a href="/user/profile/{{request.user.username}}"><i class="fas fa-user"></i>Profile</a>
+                </li>
+                <li>
+                    <a href="/blog/myblogs"><i class="fa fa-user-circle"></i>My Blogs</a>
+                </li>
+                <li>
+                    <a href="/user/logout"><i class="fa fa-user-circle"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+        {% else %}
+        <div class="navbar-links">
+            <ul>
+                <li>
+                <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+                </li>
+
+                {% if request.user_agent.is_mobile %}
+                <li>
+                    <a href="/user/msignin"><i class="fa fa-user-circle"></i>Login</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/user/signin"><i class="fa fa-user-circle"></i>Login</a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </div>
+        {% endif %}
+    </nav>
+<!-- Navbar Ends -->
+</div>
+<!-- Header Ends -->
+    
+<!-- Main Body -->
+
+    <div class="headingg">
+        <p>RECENT BLOGS</p>
+    </div>
+
+<!-- Blogs -->
+<!-- For Mobile -->
+{% if request.user_agent.is_mobile %}
+{% for blog in blogs %}
+    <div class="firstcontainer" style="padding: 50px 20px;">
+        <div class="maincard col d-flex flex-column position-static" style="padding:0; box-shadow: 5px 10px 20px #0CD5AC;">
+            <div class="cardtitle"  id="fitness">
+                <a href="/blog/{{blog.slug}}" style="text-decoration:none;color: #C10E0B;font-family: 'Philosopher', sans-serif;font-weight:900;">{{ blog.titleBlog|safe|striptags|slice:':50' }}</a>
+            </div>
+            <a class="profileinfo text-right" style="padding:5px 25px 0 0; text-decoration:none; font-family: 'Vesper Libre', serif;" href="../user/profile/{{blog.author}}">
+                <span class="avatar text-right avatar-sm rounded-circle">
+                {% if blog.author.profile.pic %}
+                    <img class="text-right" src="{{ blog.author.profile.pic.url }}" style="height:40px;width:40px" alt="" >
+                {% else %}
+                    <img class="text-right" src="../../static/images/default.jpg" style="height:40px;width:40px" alt="" >
+                {% endif %}
+                </span>
+                <span class="pl-1" style="margin-top:20px;font-size:25px;font-weight:500;vertical-align: bottom;color:black; color: grey; font-family: 'Share Tech', monospace;">{{ blog.author }}</span>
+            </a>
+            <div class="content" style="padding-top:40px;padding-bottom:40px;">
+                <p style="padding: 0 30px;" class="card-text mb-auto">{{ blog.content|safe|striptags|slice:':235' }}</p>
+            </div>
+            <!-- Read More Button -->
+            <div class="readButton text-center text-right" style="padding-bottom: 45px;">
+                <svg xmlns=" http://www.w3.org/2000/svg" version="1.1" class="goo">
+                    <defs>
+                        <filter id="goo">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                            <feColorMatrix in="blur" mode="matrix"
+                                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                            <feComposite in="SourceGraphic" in2="goo" />
+                        </filter>
+                    </defs>
+                </svg>
+
+                <span class="button--bubble__container">
+                    <a href="/blog/{{blog.slug}}" class="button button--bubble" style="padding: 12px 30px">
+                        Read More
+                    </a>
+                    <span class="button--bubble__effect-container">
+                        <span class="circle top-left"></span>
+                        <span class="circle top-left"></span>
+                        <span class="circle top-left"></span>
+
+                        <span class="button effect-button"></span>
+
+                        <span class="circle bottom-right"></span>
+                        <span class="circle bottom-right"></span>
+                        <span class="circle bottom-right"></span>
+                    </span>
+                </span>
+            </div>
+            <!-- Read More Button End -->
+        </div>
+    </div>
+{% endfor %}
+<!-- For Mobile End-->
+<!-- For Desktop-->
+{% else %}
+{% for blog in blogs %}
+    <div class="firstcontainer" style="padding: 50px 200px;">
+        <div class="maincard col d-flex flex-column position-static" style="padding:0;box-shadow: 5px 10px 20px #0CD5AC;">
+            <div class="cardtitle" id="fitness">
+                <a href="/blog/{{blog.slug}}" style="text-decoration:none;color: #C10E0B;font-family: 'Philosopher', sans-serif;font-weight:900;">{{ blog.titleBlog }}</a>
+            </div>
+            <a class="profileinfo text-right" style="padding:5px 25px 0 0;text-decoration:none; font-family: 'Vesper Libre', serif;" href="../user/profile/{{blog.author}}">
+                <span class="avatar text-right avatar-sm rounded-circle">
+                    <img class="text-right" src="../../static/images/default.jpg" style="height:40px;width:40px" alt="" >
+                </span>
+                <span class="pl-1" style="margin-top:20px;font-size:25px;font-weight:900;vertical-align: bottom;color: grey; font-family: 'Share Tech', monospace;">{{ blog.author }}</span>
+            </a>
+            <div class="content" style="padding-top:40px;padding-bottom:40px;color: rgb(53, 53, 52); font-family: Oldenburg, cursive;">
+                <p style="padding: 0 30px;" class="card-text mb-auto">{{ blog.content|safe|striptags|slice:':600' }}</p>
+            </div>
+
+            <!-- Read More Button -->
+            <div class="readButton text-center text-right" style="padding-bottom: 45px;">
+                <svg xmlns=" http://www.w3.org/2000/svg" version="1.1" class="goo">
+                    <defs>
+                        <filter id="goo">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                            <feColorMatrix in="blur" mode="matrix"
+                                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                            <feComposite in="SourceGraphic" in2="goo" />
+                        </filter>
+                    </defs>
+                </svg>
+
+                <span class="button--bubble__container">
+                    <a href="/blog/{{blog.slug}}" class="button button--bubble" style="padding: 12px 30px">
+                        Read More
+                    </a>
+                    <span class="button--bubble__effect-container">
+                        <span class="circle top-left"></span>
+                        <span class="circle top-left"></span>
+                        <span class="circle top-left"></span>
+
+                        <span class="button effect-button"></span>
+
+                        <span class="circle bottom-right"></span>
+                        <span class="circle bottom-right"></span>
+                        <span class="circle bottom-right"></span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endif %}
+<!-- For Desktop End -->
+<!-- Blogs End -->
+
+<!-- Main Body End -->
+
+<!-- Footer -->
+    <div class="ending">
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col">
+                        <h4>About Us</h4>
+                        <ul>
+                            <li>
+                                <a style="color: #bbbbbb;">thanks for being here and being the part of this
+                      prestigious family hope you all like this keep
+                      supporting!!</a>
+                            </li>
+                            <li><a href="/aboutus">More about us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Help</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Watch</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Developers</h4>
+                        <ul>
+                            <li><a href="/developers">Meet Developers</a></li>
+                            <li><a href="/suggestions">Suggestions</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>follow us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+<!-- Footer End -->
+
+<!-- Javascripts -->
+    <script src="../../static/javascript/home.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/CSSPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/easing/EasePack.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenLite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
+    <script src="../../static/javascript/button.js"></script>
+</body>
+</html>

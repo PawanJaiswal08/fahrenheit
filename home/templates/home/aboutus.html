@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}"/>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    
+    <!-- Footer CSS -->
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}"/>
+    
+    <!-- Navbar Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet">
+    
+    <!-- Other Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    
+    <!-- Logo Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- TITLE -->
+    <title>About Us</title>
+    <link rel="icon" href="/static/images/icon.png">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar" style="font-family: 'Mogra', cursive;">
+  <a href="{% url 'home' %}" style="text-decoration: none" class="custom-card">
+      <div class="brand-title" data-aos="fade-right" data-aos-duration="1200"><img src="/static/images/logo.png" alt="logo" width="150" height="40"/></div>
+  </a>
+  <a href="#" class="toggle-button">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+  </a>
+  {% if user.is_authenticated %}
+  <div class="navbar-links">
+      <ul>
+          <li>
+              <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+          </li>
+          <li>
+              <a href="/user/profile/{{request.user.username}}"><i class="fas fa-user"></i>Profile</a>
+          </li>
+          <li>
+              <a href="/blog/myblogs"><i class="fa fa-user-circle"></i>My Blogs</a>
+          </li>
+          <li>
+              <a href="/user/logout"><i class="fas fa-sign-out-alt"></i></i>Logout</a>
+          </li>
+      </ul>
+  </div>
+  {% else %}
+  <div class="navbar-links">
+      <ul>
+          <li>
+              <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+          </li>
+
+          {% if request.user_agent.is_mobile %}
+              <li>
+              <a href="/user/signin"><i class="fa fa-user-circle"></i>Login</a>
+              </li>
+          {% else %}
+              <li>
+              <a href="/user/signin"><i class="fa fa-user-circle"></i>Login</a>
+              </li>
+          {% endif %}
+
+          </ul>
+  </div>
+  {% endif %}
+</nav>
+<!-- Navbar End -->
+
+<!-- Main Body -->
+    <div class="main">
+        <div class="title">
+            <b>New Start</b>
+            <br>
+            <b>Learn how to blog</b>
+            <hr size="10" noshade>
+            <h3 style="font-family: 'Open Sans Condensed', sans-serif; padding-left: 5px;"> About Us | Management</h3>
+        </div>
+
+        <div>
+          <img src="../static/images/aboutback.jpg"  height="100%" width="100%" style="padding-left: 18%;padding-right: 18%;"></img>
+        </div>
+        <div class="rowh">
+            <div class="column">
+                <h3>So, you have a blog Or you’re thinking about starting one.</h3>
+            </div>
+            <div class="columnx">
+                Blogging is more than just a fun hobby for you. Much more. You’re excited about where it could lead you because you know the potential is huge. Successful bloggers land book deals, launch online businesses, attract high-paying clients, become recognized
+                thought leaders… and that’s just the tip of the iceberg.
+                <br> <br> But it doesn’t happen overnight. And if you don’t have the right approach, it won’t happen at all. That’s why Fahernheit know where they want to go, and how to find the right strategies to get there. They’re busy people who can’t
+                afford to spend weeks spinning their wheels or running down paths that turn out to be dead ends. Every hour they spend on blogging has to move them toward their end goal. Even if they don’t have the answer, they know where to find it.
+                This blog is for those people. This blog is for you.
+            </div>
+        </div>
+
+    </div>
+<!-- Main Body End -->
+
+<!-- Footer -->
+<div class="ending">
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <!-- Row -->
+            <div class="footer-col">
+              <h4>About Us</h4>
+              <ul>
+                <li>
+                  <a>thanks for being here and being the part of this
+                    prestigious family hope you all like this keep
+                    supporting!!</a>
+                </li>
+                <li><a href="/aboutus">More about us</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Help</h4>
+              <ul>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Watch</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Developers</h4>
+              <ul>
+                <li><a href="/developers">Meet Developers</a></li>
+                <li><a href="/suggestions">Suggestions</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>follow us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          <!-- Row End -->
+        </div>
+      </div>
+    </footer>
+  </div>
+<!-- Footer End -->
+
+<!-- Javascripts -->
+    <script src="/static/javascript/home.js"></script>
+    <script language="JavaScript" type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

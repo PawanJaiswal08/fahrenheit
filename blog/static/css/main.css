@@ -1,0 +1,140 @@
+.body {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: blueviolet;
+}
+
+.header{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    height: 100vh;
+}
+
+.header p {
+    color: white;
+    font-family: "Major Mono Display", monospace;
+    font-size: 70px;
+}
+
+.caards-sec {
+    margin: 0;
+    width: 100%;
+    padding: 30px 0px 70px 0px;
+    background-color: rgb(243,243,243);
+    text-align: center;
+}
+
+.card-head {
+    color: black;
+    padding: 10px 0px;
+    font-size: 35px;
+    font-family: "Eczar", serif;
+    text-shadow: 2px 2px 3px #ff0000, 2px 2px 5px black;
+}
+
+.card-deck {
+    padding: 10px 50px 20px 50px;
+}
+
+.mid-card {
+    padding-left: 30%;
+    text-align: center;
+    justify-content: center;
+}
+
+.headingg {
+    background-color: rgb(243,243,243);
+    color: black;
+    padding-top: 20px;
+    padding: 10px 0px;
+    text-align: center;
+    font-size: 35px;
+    font-family: "Eczar", serif;
+    text-shadow: 2px 2px 3px #ff0000, 2px 2px 5px black;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+/* For Loop Blog */
+.firstcontainer{
+    background-color:rgb(255, 255, 255);
+}
+
+.maincard{
+    height:80vh; 
+    /* box-shadow: 5px 10px 20px skyblue; */
+    border-radius: 20px 20px 20px 20px;
+}
+
+
+.cardtitle {
+    display: flex;
+    text-align: center;
+    height: 45%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px 20px 0px 0px;
+
+}
+
+.cardtitle a{
+    margin: 20px 20px;
+    font-size:40px; 
+    font-weight:900;
+    text-decoration:none; 
+    font-family: "Bungee Hairline", "cursive"; 
+
+}
+
+.profileinfo{
+    height: 10%;
+}
+
+.content{
+    height: 35%;
+    overflow: hidden;
+    color: rgb(53, 53, 52); 
+    font-family: Oldenburg, cursive;
+    font-size: 16px;
+}
+
+.viewbutton{
+    height: 10%;
+}
+
+/* Categories */
+#travel{
+    background-image: url(../images/card/1.png);
+}
+#dailylife{
+    background-image: url(../images/card/2.png);
+}
+#technology{
+    background-image: url(../images/card/3.png);
+}
+#arts{
+    background-image: url(../images/card/4.png);
+}
+#sports{
+    background-image: url(../images/card/5.png);
+}
+#education{
+    background-image: url(../images/card/6.png);
+}
+#entertainment{
+    background-image: url(../images/card/7.png);
+}
+#food{
+    background-image: url(../images/card/8.png);
+}
+#fitness{
+    background-image: url(../images/card/9.png);
+}
+#myblogs{
+    background-image: url(../images/card/10.png);
+}

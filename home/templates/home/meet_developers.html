@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/meet_developers.css' %}"/>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    
+    <!-- Navbar Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet">
+
+    <!-- Logo Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- TITLE -->
+    <title>Developers</title>
+    <link rel="icon" href="/static/images/icon.png">
+</head>
+<body>
+<!-- Navbar -->
+    <nav class="navbar" style="font-family: 'Mogra', cursive;">
+        <a href="{% url 'home' %}" style="text-decoration: none" class="custom-card">
+            <div class="brand-title" data-aos="fade-right" data-aos-duration="1200"><img src="/static/images/logo.png" alt="logo" width="150" height="40"/></div>
+        </a>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        {% if user.is_authenticated %}
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+                </li>
+                <li>
+                    <a href="/user/profile/{{request.user.username}}"><i class="fas fa-user"></i>Profile</a>
+                </li>
+                <li>
+                    <a href="/user/logout"><i class="fa fa-user-circle"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+        {% else %}
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+                </li>
+
+                {% if request.user_agent.is_mobile %}
+                    <li>
+                    <a href="/user/msignin"><i class="fa fa-user-circle"></i>Login</a>
+                    </li>
+                {% else %}
+                    <li>
+                    <a href="/user/signin"><i class="fa fa-user-circle"></i>Login</a>
+                    </li>
+                {% endif %}
+
+                </ul>
+        </div>
+        {% endif %}
+    </nav>
+<!-- Navbar End -->
+
+<!-- Main Body-->
+<div class="bada">
+    <section>
+        <!-- First -->
+        <div class="container">
+            <!-- Laurel -->
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx"><img src="../../static/images/developers/rishabh.jpg"/></div>
+                    <div class="contentBx">
+                        <h3>Laurel Verma<br /><span class="subheading">Laurel.v19@iiits.in</span></h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i: 1">
+                        <a href="https://www.facebook.com/laurel.verma.14" target="_blank"><i class="fab fa-facebook-f" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                        <a href="https://www.instagram.com/laurel_verma/" target="_blank"><i class="fab fa-instagram" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Himanshu -->
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx"><img src="../../static/images/developers/himanshu.jpg" /></div>
+                    <div class="contentBx">
+                        <h3>Himanshu Pal<br/><span class="subheading">Himanshu.p19@iiits.in</span></h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i: 1">
+                        <a href="https://www.facebook.com/profile.php?id=100024902782649"><i class="fab fa-facebook-f"  style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                        <a href="https://www.linkedin.com/in/himanshu-pal-a15911195/"><i class="fab fa-linkedin-in"  style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                        <a href="https://www.instagram.com/himanshupal3249/"><i class="fab fa-instagram"  style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Pawankumar -->
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx"><img src="../../static/images/developers/pawan.jpg" /></div>
+                    <div class="contentBx">
+                        <h3>Pawankumar Jaiswal<br /><span class="subheading">Pawankumarrajeshlal.j19@iiits.in</span></h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i: 1">
+                        <a href="https://www.facebook.com/pawanjaiswal0843/" target="_blank"><i class="fab fa-facebook-f" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                        <a href="#"><i class="fab fa-linkedin-in" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                        <a href="https://www.instagram.com/pawan_jaiswal_08/" target="_blank"><i class="fab fa-instagram"  style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Second -->
+        <div class="container">
+            <!-- Vishwesh -->
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx"><img src="../../static/images/developers/vishwesh.jpg" /></div>
+                    <div class="contentBx">
+                        <h3>Vishwesh Dhoble<br /><span class="subheading">Vishweshnavneet.d19@iiits.in</span></h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i: 1">
+                        <a href="#"><i class="fab fa-facebook-f" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                        <a href="#"><i class="fab fa-linkedin-in" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                        <a href="#"><i class="fab fa-instagram" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Bhaskar -->
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx"><img src="../../static/images/developers/bhaskar.jpg" /></div>
+                    <div class="contentBx">
+                        <h3>Bhaskar V.<br /><span class="subheading">Saibhaskar.v19@iiits.in</span></h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i: 1">
+                        <a href="#"><i class="fab fa-facebook-f" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                        <a href="#"><i class="fab fa-linkedin-in" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                        <a href="#"><i class="fab fa-instagram" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Rishabh -->
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx"><img src="../../static/images/developers/rishabh.jpg" /></div>
+                    <div class="contentBx">
+                        <h3>Rishabh Jha<br /><span class="subheading">Rishabh.j19@iiits.in</span></h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i: 1">
+                        <a href="#"><i class="fab fa-facebook-f" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                        <a href="#"><i class="fab fa-linkedin-in" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                        <a href="#"><i class="fab fa-instagram" style="color: black;" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Main Body End-->
+
+<!-- Javascripts -->
+    <script src="../../static/javascript/home.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: rgb(1, 112, 168);
+  background-image: linear-gradient(rgb(1, 112, 168), rgb(194, 248, 250));
+  color: white;
+}
+
+
+.form-group{
+  padding-top: 20px;
+}
+
+#titleBlog{
+  width: 50%;
+}
+
+#labelspan, #labelname , #labeltextarea{
+  color: #222F3E;
+  font-weight: 500;
+}
+
+#postbutton{
+  align-items: center;
+}

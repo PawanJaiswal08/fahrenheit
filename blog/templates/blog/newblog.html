@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/newblog.css' %}" />
+
+    <!-- Navbar CSS -->
+    <link rel="stylesheet" href="{% static 'css/navbar-dark.css' %}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+     
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+    <!-- PostButton CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/postbutton.css' %}" />
+
+    <!-- Other -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!-- Navbar Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet">
+    
+    <!-- Logo Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- TinyMCE Script -->
+    <script src="https://cdn.tiny.cloud/1/11icuj7d6trotcusjzzmm3ayz9uw7fpcr9nkia9ekxptglst/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <!-- TITLE -->
+    <title>Start Writing Your Blog</title>
+    <link rel="icon" href="/static/images/icon.png">
+</head>
+<body>
+<!-- Navbar -->
+    <nav class="navbar" style="font-family: 'Mogra', cursive;">
+      <a href="{% url 'home' %}" style="text-decoration: none" class="custom-card">
+        <div class="brand-title" data-aos="fade-right" data-aos-duration="1200"><img src="/static/images/logo.png" alt="logo" width="150" height="40"/></div>
+      </a>
+      <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      {% if user.is_authenticated %}
+      <div class="navbar-links">
+        <ul>
+          <li>
+            <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+          </li>
+          <li>
+            <a href="/user/profile/{{request.user.username}}"><i class="fas fa-user"></i>Profile</a>
+          </li>
+          <li>
+            <a href="/blog/myblogs"><i class="fa fa-user-circle"></i>{{ user.username }}</a>
+          </li>
+          <li>
+            <a href="/user/logout"><i class="fa fa-user-circle"></i>Logout</a>
+          </li>
+        </ul>
+      </div>
+      {% else %}
+      <div class="navbar-links">
+        <ul>
+          <li>
+            <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+          </li>
+
+          {% if request.user_agent.is_mobile %}
+            <li>
+              <a href="/user/msignin"><i class="fa fa-user-circle"></i>Login</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="/user/signin"><i class="fa fa-user-circle"></i>Login</a>
+            </li>
+          {% endif %}
+
+        </ul>
+      </div>
+      {% endif %}
+    </nav>
+<!-- Navbar End -->
+
+<!-- Main Body -->
+<div class="container">
+    <div class="container my-5">
+        <h3 style="text-align: center;">Start writing your blog here </h3>
+        <!-- Form -->
+        <form action="/blog/new_blog" method="post" id="newblogid">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="titleBlog"><span id="labelspan">Title</span></label>
+                <input type="text" class="form-control" id="titleBlog" name="titleBlog" aria-describedby="titleBlog" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name"><span id="labelname">Choose a categories : </span></label>
+                <select name="name" id="name">
+                    <option value="Technical">Technical</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Foody">Foody</option>
+                    <option value="Education">Education</option>
+                    <option value="Daily Life">Daily Life</option>
+                    <option value="Art and Literature">Art and Literature</option>
+                    <option value="Fitness">Fitness</option>
+                    <option value="Entertainment">Entertainment</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                {{ form.media }}
+                <label style="padding-bottom:20px" for="content"><span id="labeltextarea">Blog Content : </span></label>
+                <textarea style="height: 590px;" class="form-control" name="content" id="content" cols="70" rows="5">Hello {{ user.username }} </textarea >
+            </div>
+
+            <!-- <button style="margin:20px auto; background-color: #222F3E; color: white;" type="submit" id="postbutton" class="btn btn-light">Post Blog</button> -->
+            <!-- Submit button -->
+            <button type="submit" id="postbutton">
+                <a href="" class="rocket-button" style="text-decoration: none;" id="initiateSubmit">
+                    <div class="default">Post Blog</div>
+                    <div class="success">
+                        <svg>
+                            <use xlink:href="#check">
+                        </svg>
+                        <div>Blog posted!</div>
+                    </div>
+                    <div class="animation">
+                        <div class="rocket">
+                            <svg>
+                                <use xlink:href="#rocket">
+                            </svg>
+                        </div>
+                        <div class="smoke">
+                            <i></i><i></i><i></i><i></i><i></i><i></i>
+                        </div>
+                    </div>
+                </a>
+
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 11" id="check">
+                        <polyline stroke="currentColor" points="1 5.5 5 9.5 12 1.5"></polyline>
+                    </symbol>
+                    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 36" id="rocket">
+                        <path
+                        d="M12,0 C18.6666667,8.70175439 19.7777778,19.0350877 15.3333333,31 L8.66666667,31 C4.22222222,19.0350877 5.33333333,8.70175439 12,0 Z"
+                        fill="var(--rocket)"></path>
+                        <path
+                        d="M12,0 C5.33333333,8.70175439 4.22222222,19.0350877 8.66666667,31 C6.72222222,17.9473684 7.83333333,7.61403509 12,0 Z"
+                        fill="var(--rocket-shadow-left)"></path>
+                        <path
+                        d="M12,0 C18.6666667,8.70175439 19.7777778,19.0350877 15.3333333,31 C17.2777778,17.9473684 16.1666667,7.61403509 12,0 Z"
+                        fill="var(--rocket-shadow-right)"></path>
+                        <path
+                        d="M22.2399372,27.25 C21.2403105,25.558628 19.4303122,23.808628 16.21,22 L15,31 L17.6512944,31 C18.2564684,31 18.8216022,31.042427 19.1572924,31.5292747 L21.7379379,35.271956 C22.0515593,35.7267976 22.5795404,36 23.1449294,36 C23.5649145,36 23.9142153,35.7073938 23.9866527,35.3215275 L24,35.146217 L23.9987214,35.1196135 C23.7534506,31.4421183 23.1671892,28.8189138 22.2399372,27.25 Z"
+                        fill="var(--rocket-wing-right)"></path>
+                        <path
+                        d="M1.76006278,27.25 C2.75968951,25.558628 4.56968777,23.808628 7.79,22 L9,31 L6.34870559,31 C5.74353157,31 5.17839777,31.042427 4.84270762,31.5292747 L2.2620621,35.271956 C1.94844071,35.7267976 1.42045963,36 0.855070627,36 C0.435085457,36 0.0857846604,35.7073938 0.0133472633,35.3215275 L0,35.146217 L0.00127855763,35.1196135 C0.24654935,31.4421183 0.832810758,28.8189138 1.76006278,27.25 Z"
+                        fill="var(--rocket-wing-left)"></path>
+                        <circle fill="var(--rocket-window-shadow)" cx="12" cy="12" r="3"></circle>
+                        <circle fill="var(--rocket-window)" cx="12" cy="12" r="2.5"></circle>
+                        <path
+                        d="M15.6021597,5.99977504 L8.39784027,5.99977504 C8.54788101,5.6643422 8.70496315,5.3309773 8.86908669,4.99968036 L15.1309133,4.99968036 C15.2950369,5.3309773 15.452119,5.6643422 15.6021597,5.99977504 Z"
+                        fill-opacity="0.3" fill="var(--rocket-line)"></path>
+                    </symbol>
+                </svg>
+            </button>
+            
+            <!--End of Submit button -->
+        </form>
+        <!-- Form End -->
+    </div>
+</div>
+<div style="margin-top: 200px;">
+</div>
+<!-- Main Body End -->
+
+<!-- Javascrits -->
+    <script src="/static/javascript/jquery.js"></script>
+    <script src="/static/javascript/home.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        tinymce.init({
+        selector: 'textarea',
+        skin: 'oxide-dark',
+        branding: false,
+        plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker link image emoticons print preview media fullpage',
+        toolbar: ' undo redo | styleselect | bold italic | | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image  | forecolor backcolor emoticons | print preview | help',
+        menu: {
+                favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+        },
+        menubar: 'file edit view insert format tools table help',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name'
+        });
+    </script>
+
+  
+    <!-- script for the post button -->
+    <script src="https://wzrd.in/standalone/charming@latest%22%3E"></script>
+    <script>const d = 40;
+
+      document.querySelectorAll('.rocket-button').forEach(elem => {
+
+        elem.querySelectorAll('.default, .success > div').forEach(text => {
+          charming(text);
+          text.querySelectorAll('span').forEach((span, i) => {
+            span.innerHTML = span.textContent == ' ' ? '&nbsp;' : span.textContent;
+            span.style.setProperty('--d', i * d + 'ms');
+            span.style.setProperty('--ds', text.querySelectorAll('span').length * d - d - i * d + 'ms');
+          });
+        });
+
+        elem.addEventListener('click', e => {
+          e.preventDefault();
+          if (elem.classList.contains('animated')) {
+            return;
+          }
+          elem.classList.add('animated');
+          elem.classList.toggle('live');
+          setTimeout(() => {
+            elem.classList.remove('animated');
+          }, 2400);
+        });
+
+      });
+    </script>
+    <!-- End of the script for the post button -->
+</body>
+</html>

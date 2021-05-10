@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/suggestions.css' %}" />
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    
+    <!-- Other CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!-- Logo Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Navbar Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- TITLE -->
+    <title>Suggestions</title>
+    <link rel="icon" href="/static/images/icon.png">
+</head>
+<body>
+<!-- Navbar -->
+    <nav class="navbar" style="font-family: 'Mogra', cursive;">
+        <a href="{% url 'home' %}" style="text-decoration: none" class="custom-card">
+            <div class="brand-title" data-aos="fade-right" data-aos-duration="1200"><img src="/static/images/logo.png" alt="logo" width="150" height="40"/></div>
+        </a>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        {% if user.is_authenticated %}
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+                </li>
+                <li>
+                    <a href="/user/profile/{{request.user.username}}"><i class="fas fa-user"></i>Profile</a>
+                </li>
+                <li>
+                    <a href="/blog/myblogs"><i class="fa fa-user-circle"></i>My Blogs</a>
+                </li>
+                <li>
+                    <a href="/user/logout"><i class="fa fa-user-circle"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+        {% else %}
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+                </li>
+
+                {% if request.user_agent.is_mobile %}
+                <li>
+                    <a href="/user/msignin"><i class="fa fa-user-circle"></i>Login</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/user/signin"><i class="fa fa-user-circle"></i>Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+    </nav>
+<!-- Navbar End -->
+
+<!-- Main Body -->
+
+{% if user.is_authenticated %}
+    <div class="container my-5 text-center">
+        <h3>Write Your suggestion / issue  Here</h3>
+    </div>
+    <div class="container my-5">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group fields">
+                <label for="name">Title</label>
+                <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
+            </div>
+            <div class="form-group fields">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group fields">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone">
+            </div>
+            <div class="form-group fields">
+                <label for="content">Describe your issue :</label>
+                <textarea class="form-control" name="content" id="content" cols="30" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary fields">Submit</button>
+        </form>
+    </div>
+    <div style="margin-top: 200px;">
+    </div>
+{% else %}
+    <div class="my-4 text-center" style="text center">
+        <h6>Please <a href="{% url 'signin' %}" style="text-decoration: none;" target="_blank">login</a> to register a complaint or to give suggestions</h6>
+    </div>
+{% endif %}
+<!-- Main Body End -->
+
+<!-- JavaScripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

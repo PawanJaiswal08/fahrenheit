@@ -1,0 +1,301 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{% static 'css/explore.css' %}"/>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  
+  <!-- Font-Awesome CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+  
+  <!-- Javascript -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Explore Font  -->
+  <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+
+  <!-- Font Navbar -->
+  <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Mogra&family=Share+Tech+Mono&family=Bungee+Shade&family=Buda:wght@300&family=Bungee+Hairline&family=MuseoModerno:wght@300&family=Oldenburg&family=Fredericka+the+Great&family=Philosopher&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <!-- TITLE -->
+  <title>Explore</title>
+  <link rel="icon" href="/static/images/icon.png">
+</head>
+<body>
+
+<!-- Navbar -->
+    <nav class="navbar" style="font-family: 'Mogra', cursive;">
+        <a href="{% url 'home' %}" style="text-decoration: none" class="custom-card">
+            <div class="brand-title" data-aos="fade-right" data-aos-duration="1200"><img src="../../static/images/white_logo.png" alt="logo" width="150" height="40"/></div>
+        </a>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        {% if user.is_authenticated %}
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="/user/profile/{{request.user.username}}"><i class="fas fa-user"></i>Profile</a>
+                </li>
+                <li>
+                    <a href="/blog/myblogs"><i class="fa fa-user-circle"></i>My Blogs</a>
+                </li>
+                <li>
+                    <a href="/user/logout"><i class="fa fa-user-circle"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+        {% else %}
+        <div class="navbar-links">
+            <ul>
+                {% if request.user_agent.is_mobile %}
+                <li>
+                    <a href="/user/msignin"><i class="fa fa-user-circle"></i>Login</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/user/signin"><i class="fa fa-user-circle"></i>Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+    </nav>
+<!-- Navbar End -->
+
+<!-- Main Body -->
+<div class="caaards">
+    <div class="heading">
+        <a style="font-family: Trade Winds, cursive; color: rgb(252, 154, 7); font-size: 40px;">EXPLORE</a>
+    </div>
+<!-- Cards -->
+    <div class="row row-cols-1 row-cols-md-3">
+        <!-- Travel -->
+        <div class="col mb-4" data-aos="fade-up-right">
+            <a href="/blog/travelling" style="text-decoration: none" class="custom-card">
+            <div class="card h-100">
+                <div class="inner">
+                <img src="../../static/images/explore/travel.png" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body text-center">
+                <h5 class="card-title">Travel</h5>
+                <p class="card-text">
+                    Human Tendency is to Travel. They seek the unknown,see new places, enjoy sightseeing and everything
+                    else. Experience the same sensation through your electronic screens on Travel Blog.
+                </p>
+                </div>
+            </div>
+            </a>
+        </div>
+        <!-- Daily Life -->
+        <div class="col mb-4" data-aos="fade-up">
+            <a href="/blog/dailylife" style="text-decoration: none" class="custom-card">
+                <div class="card h-100">
+                <div class="inner">
+                    <img src="../../static/images/explore/dailylife.png" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Daily Life</h5>
+                    <p class="card-text">
+                    Are you also interested in daily news and don’t want the burden of buying a newspaper everyday? Visit
+                        our Day to Day blog section and keep yourself updated with the latest news around the world.
+                    </p>
+                </div>
+                </div>
+            </a>
+        </div>
+        <!-- Technology -->
+        <div class="col mb-4" data-aos="fade-up-left">
+            <a href="/blog/technology" style="text-decoration: none" class="custom-card">
+                <div class="card h-100">
+                <div class="inner">
+                    <img src="../../static/images/explore/technology.png" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Technology</h5>
+                    <p class="card-text">
+                    Technology is inevitable.Present Everywhere everytime. It has become an important aspect of our life,
+                        a tool that is used for our benefits.So Innovate yourself through our Technical Blog.
+                    </p>
+                </div>
+                </div>
+            </a>
+        </div>
+        <!-- Art and Literature-->
+        <div class="col mb-4" data-aos="fade-up-right">
+            <a href="/blog/art&literature" style="text-decoration: none" class="custom-card">
+                <div class="card h-100">
+                <div class="inner">
+                    <img src="../../static/images/explore/art.png" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Art and Literature</h5>
+                    <p class="card-text">
+                    Art and Literature spans everything about plays by Shakespear, to painting by Dalí, 
+                    to Greek Theatres, to poems by Frost. Interested? Visit our Art and Literature blog Section and be
+                    artsy.
+                    </p>
+                </div>
+                </div>
+            </a>
+        </div>
+        <!-- Sports -->
+        <div class="col mb-4" data-aos="fade-up">
+            <a href="/blog/sports" style="text-decoration: none" class="custom-card">
+                <div class="card h-100">
+                <div class="inner">
+                    <img src="../../static/images/explore/sport.png" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Sports</h5>
+                    <p class="card-text">
+                    Sports are a crucial part of our life. It keeps our physical and mental health
+                        intact. They enhance our Teamwork abilities. So Read the our Sports blog and let your leader come out.
+                    </p>
+                </div>
+                </div>
+            </a>
+        </div>
+        <!-- Education -->
+        <div class="col mb-4" data-aos="fade-up-left">
+            <a href="/blog/education" style="text-decoration: none" class="custom-card">
+                <div class="card h-100">
+                <div class="inner">
+                    <img src="../../static/images/explore/education.png" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Education</h5>
+                    <p class="card-text">
+                    Education is the most powerful weapon in the world which can change the world.
+                        Want to learn and increment your intelligence?, then head over to our Education blog section.
+                    </p>
+                </div>
+                </div>
+            </a>
+        </div>
+        <!-- Entertainment -->
+        <div class="col mb-4" data-aos="fade-up-right">
+            <a href="/blog/entertainment" style="text-decoration: none" class="custom-card">
+                <div class="card h-100">
+                <div class="inner">
+                    <img src="../../static/images/explore/entertainment.png" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Entertainment</h5>
+                    <p class="card-text">
+                    Entertainment is everywhere, in everything you just have to look closely. In these tough times it has
+                        become a necessity. So head over to our Entertainment blog section and read some spicy and hot blogs
+                        related to movies, music, etc.
+                    </p>
+                </div>
+                </div>
+            </a>
+        </div>
+        <!-- Food -->
+        <div class="col mb-4" data-aos="fade-up">
+            <a href="/blog/food" style="text-decoration: none" class="custom-card">
+                <div class="card h-100">
+                <div class="inner">
+                    <img src="../../static/images/explore/food.png" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Food</h5>
+                    <p class="card-text">
+                    A Recipe has No Soul. You as the cook must bring soul to the Recipe.
+                        Hungry? Why not visit our Food Blog section and try something new for yourself and your loved ones.
+                    </p>
+                </div>
+                </div>
+            </a>
+        </div>
+        <!-- Fitness -->
+        <div class="col mb-4" data-aos="fade-up-left">
+            <a href="/blog/fitness" style="text-decoration: none" class="custom-card">
+                <div class="card h-100">
+                <div class="inner">
+                    <img src="../../static/images/explore/fitness.png" class="card-img-top" alt="..." />
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Fitness</h5>
+                    <p class="card-text">
+                    Fitness is not not about being better than someone else but being better than you used to be. Head
+                        over to our Fitness blog section to get some tips about keeping your body 'Fit and Healthy'.
+                    </p>
+                </div>
+                </div>
+            </a>
+        </div>
+    </div>
+<!-- Cards End -->
+</div>
+<!-- Main Body End -->
+
+<!-- Footer -->
+  <div class="ending">
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>About Us</h4>
+            <ul>
+              <li>
+                <a
+                  >thanks for being here and being the part of this
+                  prestigious family hope you all like this keep
+                  supporting!!</a
+                >
+              </li>
+              <li><a href="/aboutus">More about us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Help</h4>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Watch</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Developers</h4>
+            <ul>
+              <li><a href="/developers">Meet Developers</a></li>
+              <li><a href="/suggestions">Suggestions</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+<!-- Footer End -->
+
+<!-- Javascripts -->
+    <script src="static/javascript/home.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+</html>

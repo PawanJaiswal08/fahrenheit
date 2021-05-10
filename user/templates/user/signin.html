@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+    
+    <!-- Navbar CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+
+    <!-- Navbar Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+    <!-- Logo Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- TITLE  -->
+    <title>Login</title>
+    <link rel="icon" href="/static/images/icon.png">
+</head>
+<body>
+<!-- Navbar -->
+    <nav class="navbar" style="font-family: 'Mogra', cursive;">
+        <a href="{% url 'home' %}" style="text-decoration: none" class="custom-card">
+            <div class="brand-title" data-aos="fade-right" data-aos-duration="1200"><img src="/static/images/logo.png" alt="logo" width="150" height="40"/></div>
+        </a>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+                </li>
+                <li>
+                    <a href="/developers"><i class="fas fa-user"></i>Developers</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<!-- Navbar End -->
+
+<!-- Main Body -->
+
+<!-- Message -->
+
+<script language="JavaScript" type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            swal({
+                title: "{{message.tags.capitalize}}",
+                text: "{{ message }}",
+                icon: "{{message.tags}}",
+                timer: 3000,
+                button: false,
+            })
+        </script>
+    {% endfor %}
+{% endif %}
+
+
+<!-- For Mobile -->
+    {% if request.user_agent.is_mobile %}
+        <form class="" action="/user/login" method='post' style="margin-top:100px;">
+            {% csrf_token %}
+            <h2>Sign In</h2>
+            <div class="form-group">
+              <label for="email">Username</label>
+              <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="" required>
+            </div>
+            <div class="form-group">
+              <label for="pass">Enter your password </label> 
+              <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="" required>
+            </div>
+            <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+            <button class="submit" type="submit" name="loginpage">Sign In</button>
+            <a href='/user/password-reset'><p class="forgot-pass">Forgot Password ?</p></a>
+            <div class="social-media">
+                <ul>
+                    <li><img src="../../static/images/facebook.png"></li>
+                    <li><img src="../../static/images/twitter.png"></li>
+                    <li><img src="../../static/images/linkedin.png"></li>
+                    <li><img src="../../static/images/instagram.png"></li>
+                </ul>
+            </div>
+        </form>
+
+        <div>
+            <h3 style="text-align:center;margin-top:40px;">New here?</h3>
+            <p style="margin-top:20px;margin-left:20px;margin-right:20px; text-align:center"><a href="{% url 'mobilesignup' %}" style="text-decoration:none; font-size:18px; font-weight:bold;">Sign Up</a> and discover great amount of new opportunities!</p>
+        </div>
+        <div style="margin-top: 200px;"></div>
+
+<!-- For Mobile End -->
+
+<!-- For Desktop -->
+    {% else %}
+        <!-- login here -->
+        <div class="bada">
+            <div class="cont">
+            <form class="form sign-in" action="/user/login" method='post'>
+                {% csrf_token %}
+                <h2>Sign In</h2>
+                <div class="form-group">
+                    <label for="email">Username</label>
+                    <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="pass">Enter your password </label> 
+                    <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="" required>
+                </div>
+                    <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+                    <button class="submit" type="submit" name="loginpage">Sign In</button>
+                    <a href='/user/password-reset'><p class="forgot-pass">Forgot Password ?</p></a>
+                <div class="social-media">
+                <ul>
+                    <li><img src="../../static/images/facebook.png"></li>
+                    <li><img src="../../static/images/twitter.png"></li>
+                    <li><img src="../../static/images/linkedin.png"></li>
+                    <li><img src="../../static/images/instagram.png"></li>
+                </ul>
+                </div>
+            </form>
+
+            <!-- signup here -->
+            <div class="sub-cont">
+                <div class="img">
+                <div class="img-text m-up">
+                    <h2>New here?</h2>
+                    <p>Sign up and discover great amount of new opportunities!</p>
+                </div>
+                <div class="img-text m-in">
+                    <h2>One of us?</h2>
+                    <p>If you already has an account, just sign in. We've missed you!</p>
+                </div>
+                <div class="img-btn">
+                    <span class="m-up">Sign Up</span>
+                    <span class="m-in">Sign In</span>
+                </div>
+                </div>
+
+
+                <!-- Form -->
+                <form class="form sign-up" action="/user/signup" method='post'>
+                    {% csrf_token %}
+                    <h2>Sign Up</h2>
+                    <div class="form-group">
+                        <label for="name">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pass1">Choose a password</label>
+                        <input type="password" class="form-control" id="pass1" name="pass1" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pass2">Confirm Password</label>
+                        <input type="password" class="form-control" id="pass2" name="pass2" placeholder="" required>
+                    </div>
+                    <button type="submit" class="submit" name="signuppage">Sign Up Now</button>
+                </form>
+            </div>
+            <!-- sub-cont End-->
+        </div>
+    </div>
+<!-- For Desktop End-->
+
+
+    {% endif %}
+<!-- Main Body End -->
+
+<!-- Javascripts -->
+    <script language="JavaScript" type="text/javascript" src="../../static/javascript/script.js"></script>
+    <script language="JavaScript" type="text/javascript" src="../../static/javascript/home.js"></script>
+    <script language="JavaScript" type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
+  

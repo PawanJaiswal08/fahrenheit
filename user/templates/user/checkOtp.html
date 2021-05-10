@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+
+    <!-- TITLE -->
+    <title>Fahrenheit</title>
+    <link rel="icon" href="/static/images/icon.png">
+
+    <!-- Javascripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/javascripts/ajax.js"></script>
+
+    <!-- Styles -->
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input:focus{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Message -->
+<script language="JavaScript" type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            swal({
+                title: "{{message.tags.capitalize}}",
+                text: "{{ message }}",
+                icon: "{{message.tags}}",
+                timer: 3000,
+                button: false,
+            })
+        </script>
+    {% endfor %}
+{% endif %}
+<!-- Message End -->
+<!-- Main Body  -->
+    <div class="container" style="justify-content:center;" >
+        <div class="card-body" >
+            <h4 class="card-title" style="text-align:center;">Verify OTP</h4>
+            <img src="../../static/images/otp.jpg" class="" alt="" style="height: 200px; width: 200px; display: block;margin: auto;" >
+            
+            <form action="" method="POST" style="margin-top: 70px;">
+                {% csrf_token %}
+                <input type="number" class="" style="margin:auto;display: block;border-top: 0;border-left: 0;border-right: 0;" id="otp" name="otp" placeholder="Enter OTP">
+                <input type="hidden" name="username" value="{{myuser.username}}">
+                <br>
+                <button type="submit" class="btn btn-primary" style="margin-top:20px;margin:auto;display: block;">Verify</button>
+            </form>
+        </div>
+    </div>
+<!-- Main Body End -->
+</body>
+</html>

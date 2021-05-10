@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+    
+    <!-- Button CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/writeblogbutton.css' %}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    
+    <!-- Other CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    
+    <!-- Logo Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Navbar Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet">
+    
+    <!-- Button Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Barrio&family=Buda:wght@300&family=Bungee+Hairline&family=MuseoModerno:wght@300&family=Oldenburg&family=Trade+Winds&display=swap"rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet"> -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=New+Tegomin&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+
+    <!-- TITLE -->
+    <title>Fahrenheit</title>
+    <link rel="icon" href="static/images/icon.png">
+
+    <!-- NoScript -->
+    <noscript>Your browser does not support JavaScript!</noscript>
+
+    <!-- Javascripts -->
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+</head>
+<body>
+<!-- Navbar -->
+    <nav class="navbar" style="font-family: 'Mogra', cursive;">
+        <a href="{% url 'home' %}" style="text-decoration: none" class="custom-card">
+            <div class="brand-title" data-aos="fade-right" data-aos-duration="1200"><img src="/static/images/logo.png" alt="logo" width="150" height="40"/></div>
+        </a>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        {% if user.is_authenticated %}
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+                </li>
+                <li>
+                    <a href="/user/profile/{{request.user.username}}"><i class="fas fa-user"></i>Profile</a>
+                </li>
+                <li>
+                    <a href="/blog/myblogs"><i class="fa fa-user-circle"></i>My Blogs</a>
+                </li>
+                <li>
+                    <a href="/user/logout"><i class="fas fa-sign-out-alt"></i></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+        {% else %}
+        <div class="navbar-links">
+            <ul>
+                <li>
+                    <a href="/explore"><i class="fas fa-compass"></i>Explore</a>
+                </li>
+
+                {% if request.user_agent.is_mobile %}
+                    <li>
+                    <a href="/user/signin"><i class="fa fa-user-circle"></i>Login</a>
+                    </li>
+                {% else %}
+                    <li>
+                    <a href="/user/signin"><i class="fa fa-user-circle"></i>Login</a>
+                    </li>
+                {% endif %}
+
+                </ul>
+        </div>
+        {% endif %}
+    </nav>
+<!-- Navbar End -->
+
+<!-- Message -->
+<script language="JavaScript" type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            swal({
+                title: "{{message.tags.capitalize}}",
+                text: "{{ message }}",
+                icon: "{{message.tags}}",
+                timer: 3000,
+                button: false,
+            })
+        </script>
+    {% endfor %}
+{% endif %}
+<!-- Message End -->
+
+
+<!-- Main Body -->
+    <section id="title">
+        <div class="test">
+            <div class="words word-1">
+              <span>F</span>
+              <span>A</span>
+              <span>H</span>
+              <span>R</span>
+              <span>E</span>
+              <span>N</span>
+              <span>H</span>
+              <span>E</span>
+              <span>I</span>
+              <span>T</span>
+            </div>
+          </div>
+          
+      <div class="subtitle-tagline" data-aos="zoom-in-up" data-aos-duration="1200">
+        <!-- <div class="logoo">
+          <img src="/static/images/logo_gif.gif" alt="" width="300" height="300"/>
+        </div> -->
+        <p id="subtitle">
+          <span>Remarkable Blogs For Remarkable People</span>
+        </p>
+      </div>
+    </section>
+
+    <div class="mid1">
+      <div class="mid1-left">
+        <h4 style="Font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; font-size: 40px;font-weight: bold; color:rgb(52, 166, 233)">TRAVEL</h4>
+        <p style="font-family: Oldenburg, cursive; font-size: 17px; font-weight: 80px; color: rgb(59, 224, 224)">Travel blogs are becoming more popular each day. Due to cheap
+          air travel, people are traveling more than ever, and they are
+          always looking for travel tips, advice, and destination
+          guides.
+        </p>
+      </div>
+      <div class="mid1-right" data-aos="fade-left" data-aos-duration="1300"><img src="static/images/yooo.svg" alt="..."  height="100%" width="100%" style="transform: scaleX(-1);"/></div>
+    </div>
+
+    <div class="mid2">
+      <div class="mid2-left" data-aos="fade-right" data-aos-duration="1250"><img src="static/images/yo.svg" alt="..."  height="100%" width="100%"/></div>
+      <div class="mid2-right">
+        <h4 style="Font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; font-size: 40px;font-weight: bold; color:rgb(52, 166, 233)">TECHNICAL</h4>
+        <p style="font-family: Oldenburg, cursive; font-size: 17px; font-weight: 80px; color: rgb(59, 224, 224)">Imagination is more important than knowledge. For knowledge
+          is limited, whereas imagination embraces the entire world,
+          stimulating progress, giving birth to evolution.
+        </p>
+      </div>
+    </div>
+    
+    <div class="mid3">
+      <div class="mid3-left">
+        <h4 style="Font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; font-size: 40px;font-weight: bold; color:rgb(52, 166, 233)">SPORTS</h4>
+        <p style="font-family: Oldenburg, cursive; font-size: 17px; font-weight: 80px; color: rgb(59, 224, 224)">Sports blogs are another interesting type of blogs online.
+          Every country in the world has different sports and every
+          sport has its own stars. Sports blogging may also include
+          bloggers who are writing paid content for teams, athletes, and
+          other organizations.
+        </p>
+      </div>
+      <div class="mid3-right" data-aos="fade-left" data-aos-duration="1250"><img src="static/images/yoo.svg" alt="..."  height="100%" width="100%"/></div>
+    </div>
+
+    <div class="mid4">
+      <div class="mid4-left" data-aos="fade-right" data-aos-duration="1250"><img src="static/images/yoooo.svg" alt="..."  height="100%" width="100%" style="transform: scaleX(-1);"/></div>
+      <div class="mid4-right">
+        <h4 style="Font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; font-size: 40px;font-weight: bold; color:rgb(52, 166, 233)">EDUCATION</h4>
+        <p style="font-family: Oldenburg, cursive; font-size: 17px; font-weight: 80px; color: rgb(59, 224, 224)">Upon the subject of education … I can only say that I view it
+          as the most important subject which we as a people may be
+          engaged in. Making mistakes is a natural part of the language
+          learning process. The key is to learn from these mistakes.
+          Don’t be afraid to try out new things in English but always
+          remember to reflect on them .
+        </p>
+        </div>
+    </div>
+
+    <div class="reading">
+      <p id="subtitle">
+        Get personalized
+        <span style="color: rgb(0, 0, 0)">Acoustic</span>
+        <span style="color: rgb(0, 0, 0)">and</span>
+        <span style="color: rgb(0, 0, 0)">Visual</span> experience
+      </p>
+      <h4>let's get started Now!!</h2>
+      
+      {% if request.user_agent.is_mobile %}
+      <div class="but">
+        <a href="/blog/new_blog" style="text-decoration: none;position:relative; right: 23px;" class="boton"><span style="position:relative; left:27px;">WriteBlog</span></a>
+      </div>
+      {% else %}
+      <div class="but">
+        <a href="/blog/new_blog" style="text-decoration: none;position:relative; right: 40px;" class="boton"><span style="position:relative; left:27px;">WriteBlog</span></a>
+      </div>
+      {% endif %}
+    </div>
+<!-- Main Body End -->
+
+<!-- Footer -->
+    <div class="ending">
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                <!-- Row -->
+                    <div class="footer-col">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li>
+                        <a>thanks for being here and being the part of this
+                            prestigious family hope you all like this keep
+                            supporting!!</a>
+                        </li>
+                        <li><a href="/aboutus">More about us</a></li>
+                    </ul>
+                    </div>
+                    <div class="footer-col">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Watch</a></li>
+                    </ul>
+                    </div>
+                    <div class="footer-col">
+                    <h4>Developers</h4>
+                    <ul>
+                        <li><a href="/developers">Meet Developers</a></li>
+                        <li><a href="/suggestions">Suggestions</a></li>
+                    </ul>
+                    </div>
+                    <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    </div>
+                <!-- Row End -->
+                </div>
+            </div>
+        </footer>
+    </div>
+<!-- Footer End -->
+
+
+<!-- Javascripts -->
+    <script src="/static/javascript/jquery.js"></script>
+    <script src="/static/javascript/home.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script>
+        $(window).ready(function () {
+            $(".boton").wrapInner('<div class=botontext></div>');
+
+            $(".botontext").clone().appendTo($(".boton"));
+
+            $(".boton").append('<span class="twist"></span><span class="twist"></span><span class="twist"></span><span class="twist"></span>');
+
+            $(".twist").css("width", "25%").css("width", "+=3px");
+        });
+    </script>  
+</body>
+</html>

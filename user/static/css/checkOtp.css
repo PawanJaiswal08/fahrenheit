@@ -1,0 +1,79 @@
+body{
+    background-image: linear-gradient(rgb(5,38,91), rgb(90,193,210),rgb(5,38,91));
+    height: 100vh;
+}
+
+#container_of_cards {
+  font-family: "Poppins", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#container_of_cards .card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transform-style: preserve-3d;
+  display: grid;
+  width: 30%;
+  font-family: roboto;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin: 30px;
+}
+
+@media (max-width: 825px) {
+  .card {
+    width: 80%;
+  }
+}
+
+#container_of_cards .card::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  pointer-events: none;
+}
+
+#container_of_cards .card .content {
+  text-align: center;
+  grid-area: text;
+  margin: 25px;
+}
+
+#container_of_cards .card .content h1 {
+  font-weight: bold;
+  margin-top: 0px;
+  font-size: 30px;
+  transition: all 0.5s ease-out;
+}
+
+.circle {
+  width: 15rem;
+  height: 15rem;
+  background: linear-gradient(
+    to right,
+    rgba(245, 70, 66, 0.75),
+    rgba(8, 83, 156, 0.75)
+  );
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.logo-image img {
+  z-index: 2;
+  transition: all 0.75s ease-out;
+}

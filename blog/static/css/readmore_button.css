@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+.readButton div {
+  display: block;
+  height: 100%;
+  animation: hue-rotate 10s linear infinite;
+}
+
+.readButton .button {
+  -webkit-font-smoothing: antialiased;
+  background-color: #ffd662ff;
+  border: none;
+  display: inline-block;
+
+  font-family: "MuseoModerno", cursive;
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+  user-select: none;
+  letter-spacing: 1px;
+  color: #00539cff;
+  padding: 20px 40px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-out;
+}
+
+.readButton .button:hover {
+  background-color: #00539cff;
+  color: #ffd662ff;
+}
+
+.readButton .button:active {
+  transform: scale(0.95);
+}
+
+.readButton .button--bubble {
+  position: relative;
+  z-index: 2;
+  color: #00539cff;
+  background: none;
+}
+
+.readButton .button--bubble:hover {
+  background: none;
+}
+
+.readButton .button--bubble:hover + .button--bubble__effect-container .circle {
+  background: #ffd662ff;
+}
+
+.readButton .button--bubble:hover + .button--bubble__effect-container .button {
+  background: #00a4ccff;
+}
+
+.readButton .button--bubble:active + .button--bubble__effect-container {
+  transform: scale(0.95);
+}
+
+.readButton .button--bubble__container {
+  position: relative;
+  display: inline-block;
+}
+
+.readButton .button--bubble__container .effect-button {
+  position: absolute;
+  width: 50%;
+  height: 25%;
+  top: 50%;
+  left: 25%;
+  z-index: 1;
+  transform: translateY(-50%);
+  background: #ffd662ff;
+  transition: background 0.1s ease-out;
+}
+
+.readButton .button--bubble__effect-container {
+  position: absolute;
+  display: block;
+  width: 200%;
+  height: 400%;
+  top: -150%;
+  left: -50%;
+  -webkit-filter: url("#goo");
+  filter: url("#goo");
+  transition: all 0.1s ease-out;
+  pointer-events: none;
+}
+
+.readButton .button--bubble__effect-container .circle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 15px;
+  background: #ffd662ff;
+  transition: background 0.1s ease-out;
+}
+
+.readButton .button--bubble__effect-container .circle.top-left {
+  top: 40%;
+  left: 27%;
+}
+
+.readButton .button--bubble__effect-container .circle.bottom-right {
+  bottom: 40%;
+  right: 27%;
+}
+
+.readButton .goo {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+.readButton .button--bubble__container {
+  top: 50%;
+  margin-top: -25px;
+}
+
+@keyframes hue-rotate {
+  from {
+    -webkit-filter: hue-rotate(0);
+    -moz-filter: hue-rotate(0);
+    -ms-filter: hue-rotate(0);
+    filter: hue-rotate(0);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(360deg);
+    -moz-filter: hue-rotate(360deg);
+    -ms-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
